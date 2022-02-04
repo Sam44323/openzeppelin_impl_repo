@@ -3,7 +3,7 @@ import { ethers } from "hardhat";
 const deployErcToken = async () => {
   try {
     const Token = await ethers.getContractFactory("ErcToken");
-    const token = await Token.deploy(10 ** 5);
+    const token = await Token.deploy();
 
     await token.deployed();
 
