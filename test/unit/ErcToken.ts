@@ -9,13 +9,13 @@ describe("Checking the transfer of tokens", function () {
     [owner, receiver] = await ethers.getSigners();
     ErcToken = await (await ethers.getContractFactory("ErcToken"))
       .connect(owner)
-      .deploy(10 ** 5);
+      .deploy();
 
     await ErcToken.transfer(receiver.address, 100);
   });
   it("Test for balance of the owner", async () => {
     const ownerBalance: number = await ErcToken.balanceOf(owner.address);
-    expect(ownerBalance).to.equal(10 ** 5 - 100);
+    expect(ownerBalance).to.equal(99900);
   });
 
   it("Test for balance of receiver", async () => {
