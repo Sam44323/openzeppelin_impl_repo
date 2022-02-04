@@ -1,20 +1,10 @@
-//SPDX-License-Identifier: Unlicense
+// contracts/ERC20.sol
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract Greeter {
-    string private greeting;
-
-    constructor(string memory _greeting) {
-        greeting = _greeting;
-    }
-
-    function greet() public view returns (string memory) {
-        return greeting;
-    }
-
-    function setGreeting(string memory _greeting) public {
-        greeting = _greeting;
+contract ErcToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("ERCTOKEN", "ERC") {
+        _mint(msg.sender, initialSupply);
     }
 }
