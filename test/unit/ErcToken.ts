@@ -13,7 +13,12 @@ describe("Checking the transfer of tokens", function () {
 
     await ErcToken.transfer(receiver.address, 100);
   });
-  it("Test for balance of receiver", async function () {
+  it("Test for balance of the owner", async () => {
+    const ownerBalance: number = await ErcToken.balanceOf(owner.address);
+    expect(ownerBalance).to.equal(10 ** 5 - 100);
+  });
+
+  it("Test for balance of receiver", async () => {
     const balance: number = await ErcToken.balanceOf(receiver.address);
     expect(balance).to.equal(100);
   });
