@@ -19,6 +19,18 @@ describe("Testing the NFT Token", () => {
     expect(await NftToken.owner()).to.equal(owner.address);
   });
 
+  it("Only admin can mint a token", async () => {
+    try {
+      await NftToken.connect(recipient.address).mint(
+        recipient.address,
+        "https://jsonplaceholder.typicode.com/todos/1"
+      );
+    } catch (err: any) {
+      // eslint-disable-next-line no-unused-expressions
+      expect(err).not.to.be.empty;
+    }
+  });
+
   it("Testing the token id increment", async () => {
     for (let i of [1, 2, 3]) {
       await NftToken.mint(
