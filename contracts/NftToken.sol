@@ -12,16 +12,15 @@ contract NftToken is ERC721URIStorage, Ownable {
 
     constructor() ERC721("NftToken", "NFT") {}
 
-    function mint(address recipient, string memory tokenURI)
-        public
-        returns (uint256)
-    {
+    function mint(address recipient, string memory tokenURI) public {
         _tokenIds.increment();
 
         uint256 currentId = _tokenIds.current();
         _mint(recipient, currentId);
         _setTokenURI(currentId, tokenURI);
+    }
 
-        return currentId;
+    function getTokenIdValue() public view returns (uint256) {
+        return _tokenIds.current();
     }
 }

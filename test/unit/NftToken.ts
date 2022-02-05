@@ -18,4 +18,17 @@ describe("Testing the NFT Token", () => {
   it("Checking the owner of the NFT_contract", async () => {
     expect(await NftToken.owner()).to.equal(owner.address);
   });
+
+  it("Testing the token id increment", async () => {
+    await NftToken.mint(
+      recipient.address,
+      "https://jsonplaceholder.typicode.com/todos/1"
+    );
+
+    const tokenId = await NftToken.getTokenIdValue();
+
+    console.log("TokenId: ", tokenId.data);
+
+    expect(tokenId).to.equal(1);
+  });
 });
