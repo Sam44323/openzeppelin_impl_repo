@@ -1,6 +1,6 @@
 import { ethers } from "hardhat";
 
-const deployErcToken = async () => {
+export const deployErcToken = async () => {
   try {
     const Token = await ethers.getContractFactory("ErcToken");
     const token = await Token.deploy();
@@ -13,4 +13,4 @@ const deployErcToken = async () => {
   }
 };
 
-export default deployErcToken;
+deployErcToken();
