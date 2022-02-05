@@ -20,15 +20,17 @@ describe("Testing the NFT Token", () => {
   });
 
   it("Testing the token id increment", async () => {
-    await NftToken.mint(
-      recipient.address,
-      "https://jsonplaceholder.typicode.com/todos/1"
-    );
+    for (let i of [1, 2, 3]) {
+      await NftToken.mint(
+        recipient.address,
+        "https://jsonplaceholder.typicode.com/todos/1"
+      );
+    }
 
     const tokenId = await NftToken.getTokenIdValue();
 
     console.log("TokenId: ", tokenId.data);
 
-    expect(tokenId).to.equal(1);
+    expect(tokenId).to.equal(3);
   });
 });
