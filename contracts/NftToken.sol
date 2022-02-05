@@ -12,7 +12,7 @@ contract NftToken is ERC721URIStorage, Ownable {
 
     constructor() ERC721("NftToken", "NFT") {}
 
-    function mint(address recipient, string memory tokenURI) public {
+    function mint(address recipient, string memory tokenURI) public onlyAdmin {
         _tokenIds.increment();
 
         uint256 currentId = _tokenIds.current();
@@ -22,5 +22,10 @@ contract NftToken is ERC721URIStorage, Ownable {
 
     function getTokenIdValue() public view returns (uint256) {
         return _tokenIds.current();
+    }
+
+    modifier onlyAdmin() {
+        require(msg.sender == owner(), "Caller doesn't have admin access");
+        _;
     }
 }
