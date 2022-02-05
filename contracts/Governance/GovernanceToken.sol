@@ -11,4 +11,28 @@ contract GovernanceToken is ERC20, ERC20Permit, ERC20Votes {
         ERC20("GovernanceToken", "GTK")
         ERC20Permit("GovernanceToken")
     {}
+
+    // Overriding the required functions implemented from inheritance to ad custom functionalities
+
+    function _afterTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override(ERC20, ERC20Votes) {
+        super._afterTokenTransfer(from, to, amount);
+    }
+
+    function _mint(address account, uint256 amount)
+        internal
+        override(ERC20, ERC20Votes)
+    {
+        super._mint(account, amount);
+    }
+
+    function _burn(address account, uint256 amount)
+        internal
+        override(ERC20, ERC20Votes)
+    {
+        super._burn(account, amount);
+    }
 }
