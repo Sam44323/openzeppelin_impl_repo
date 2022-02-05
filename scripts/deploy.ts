@@ -1,4 +1,4 @@
-import deployErcToken from "./TokenDeploy";
+import deployErcToken from "./contracts/TokenDeploy";
 
 async function main() {
   await deployErcToken();
